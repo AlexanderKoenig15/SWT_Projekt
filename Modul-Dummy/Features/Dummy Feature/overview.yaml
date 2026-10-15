@@ -1,0 +1,208 @@
+feature_name: Dummy Feature
+description: >-
+  Anonymized sandbox Feature that instantiates every process and document
+  template from 000_TEMPLATES. All names, versions and progress values are
+  placeholders.
+responsible: SFO
+owner: jane.doe@example.com
+
+processes:
+
+  feature_elaboration:
+    owner: jane.doe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 100
+
+  solution_concept:
+    owner: jane.doe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 100
+
+  sph:
+    sources:
+      - 01_System_Spec/SPH
+    owner: jane.doe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 80
+
+  tia_portal_integration:
+    sources:
+      - 01_System_Spec/TIA_Integration
+    owner: jane.doe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 60
+
+  tra:
+    sources:
+      - 01_System_Spec/TRA
+    owner: richard.roe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 80
+
+  feature_specification:
+    owner: jane.doe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 100
+
+  modularization_fmc:
+    owner: jane.doe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 60
+
+  clearing_patent:
+    responsible: SFO
+    owner: richard.roe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 40
+
+  user_docs:
+    responsible: SFO
+    owner: jane.doe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 40
+
+  feature_implementation:
+    sources:
+      - 03_Implementation/Firmware
+    responsible: SFO
+    owner: richard.roe@example.com
+    modularization_type: Core Asset
+    version: "0.1"
+    date: 2026-10-08
+    progress: 60
+
+  integration_imck:
+    sources:
+      - 03_Implementation/Integration_IMCK
+    responsible: SFO
+    owner: richard.roe@example.com
+    modularization_type: Component
+    products:
+      - Dummy Product A
+      - Dummy Product B
+    framework: Dummy Framework
+    version: "0.1"
+    date: 2026-10-08
+    progress: 40
+
+  integration_sp:
+    sources:
+      - 03_Implementation/Integration_SP
+    responsible: SFO
+    owner: richard.roe@example.com
+    modularization_type: Component
+    products:
+      - Dummy Product A
+    framework: Dummy Framework
+    version: "0.1"
+    date: 2026-10-08
+    progress: 40
+
+  integration_mp:
+    sources:
+      - 03_Implementation/Integration_MP
+    responsible: SFO
+    owner: richard.roe@example.com
+    modularization_type: Source Library
+    products:
+      - Dummy Product B
+    framework: Dummy Framework
+    version: "0.1"
+    date: 2026-10-08
+    progress: 20
+
+  integration_tl:
+    sources:
+      - 03_Implementation/Integration_TL
+    responsible: SFO
+    owner: richard.roe@example.com
+    modularization_type: Source Library
+    products:
+      - Dummy Product B
+    framework: Dummy Framework
+    version: "0.1"
+    date: 2026-10-08
+    progress: 20
+
+  clearing_oss:
+    sources:
+      - 03_Implementation/Clearing_OSS
+    responsible: SFO
+    owner: richard.roe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 40
+
+  clearing_export:
+    sources:
+      - 03_Implementation/Clearing_Export
+    responsible: SFO
+    owner: richard.roe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 40
+
+  dependencies:
+    owner: jane.doe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 60
+
+  test_concept:
+    owner: richard.roe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 100
+
+  test_cases_system:
+    sources:
+      - 04_Testing/TestCases_System
+    owner: richard.roe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 80
+    tms_database: DUMMY_TMS_SYSTEM
+
+  test_cases_integration:
+    sources:
+      - 04_Testing/TestCases_Integration
+    owner: richard.roe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 60
+    tms_database: DUMMY_TMS_INTEGRATION
+
+  test_automation_solutions:
+    owner: richard.roe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 40
+
+  modularization_imc:
+    responsible: SFO
+    owner: richard.roe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 40
+
+  test_automation_library:
+    owner: richard.roe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 20
+
+  test_automation_scripts:
+    responsible: SFO
+    owner: richard.roe@example.com
+    version: "0.1"
+    date: 2026-10-08
+    progress: 20

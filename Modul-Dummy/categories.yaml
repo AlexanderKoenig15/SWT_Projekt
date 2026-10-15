@@ -1,0 +1,7 @@
+# First-level navigation order and inclusion for the published site.
+categories:
+  - title: Home
+    path: Home
+
+  - title: Features
+    path: Features
