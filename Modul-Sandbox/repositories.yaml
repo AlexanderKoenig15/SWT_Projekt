@@ -1,0 +1,14 @@
+# Dashboard-owned registry for repositories used by the workspace or published site.
+# A repository with mount_path is assembled into the documentation tree. A repository
+# without mount_path is workspace-only and is never materialized by the Pages build.
+version: 2
+repositories:
+  - id: tools
+    repository: AS-IO/Modul-Tools
+    workspace: optional
+    purpose: Optional conversion and inspection tools
+  - id: dummy
+    repository: AS-IO/Modul-Dummy
+    workspace: optional
+    mount_path: .
+    purpose: Sandbox documentation root

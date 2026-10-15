@@ -1,0 +1,25 @@
+name: Issue
+description: Create a new issue for the Modularization Dashboard project.
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      placeholder: A clear and concise description of the issue.
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Affected Page or File
+      description: Which page, category, or file is affected (for example `docs/Features/<item>/overview.yaml`)?
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+    validations:
+      required: false

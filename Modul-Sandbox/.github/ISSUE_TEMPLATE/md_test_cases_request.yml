@@ -1,0 +1,69 @@
+name: MD Test Case Format Request
+description: Request or propose improvements to the unified Markdown test-case format.
+title: "[MD Test Cases Req]: <Topic>"
+labels: ["MD Test Cases Req"]
+assignees: [diego-augusto-de-moraes]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to submit requirements, suggestions, or questions about the **unified Markdown format for test cases** (YAML front-matter, Test Case Key, execution scenarios, TMS attributes, etc.).
+
+  - type: dropdown
+    id: related_change_section
+    attributes:
+      label: Related Change Section
+      description: Which proposed change does this request concern? (Pre-filled when you use a section-specific button.)
+      options:
+        - "Section 1 - YAML Front-Matter"
+        - "Section 2 - Test Case Key to UUID"
+        - "Section 3 - Execution Scenario"
+        - "General / Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the requirement, suggestion, or question in detail.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scenario_preference
+    attributes:
+      label: Preferred Execution Scenario Format
+      description: Which execution-scenario layout do you prefer or is your request about?
+      options:
+        - "A: Table (steps + expected results in columns)"
+        - "B: Single numbered list (steps merged with expected results)"
+        - "C: Separated numbered lists (steps and results in two sections)"
+        - "Not applicable / Other"
+    validations:
+      required: false
+
+  - type: input
+    id: tms_tags
+    attributes:
+      label: TMS Tags or Special Attributes
+      description: If your request involves specific TMS tags or special attributes, list them here.
+      placeholder: "e.g. Priority, TestLevel, DeviceRelevancy"
+    validations:
+      required: false
+
+  - type: input
+    id: location
+    attributes:
+      label: Affected Page or File
+      description: Which page, template, or file is affected?
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Anything else that would help evaluate this request (links, examples, screenshots).
+    validations:
+      required: false

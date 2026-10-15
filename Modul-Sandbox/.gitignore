@@ -1,0 +1,5 @@
+site/
+.local-preview/
+__pycache__/
+.coverage
+.vscode/settings.json

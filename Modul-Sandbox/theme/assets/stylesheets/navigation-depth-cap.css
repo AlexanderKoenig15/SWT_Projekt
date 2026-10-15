@@ -1,0 +1,50 @@
+/* Keep generated routes in MkDocs navigation, but stop the primary sidebar
+   after the third navigation level (category > item > group). The theme
+   exposes that level through data-md-level, which is more reliable than DOM
+   depth. Section labels stay reachable because `navigation.indexes` turns them
+   into links to their own overview page. */
+.md-sidebar--primary .md-nav--primary .md-nav[data-md-level="2"] > .md-nav__list {
+  display: none;
+}
+
+/* The parent toggle no longer has visible content to expand, so drop both the
+   checkbox and the expand indicator that opens it. */
+.md-sidebar--primary .md-nav--primary .md-nav__item:has(> .md-nav[data-md-level="2"]) > .md-nav__toggle,
+.md-sidebar--primary .md-nav--primary .md-nav__item:has(> .md-nav[data-md-level="2"]) > .md-nav__link > label.md-nav__link,
+.md-sidebar--primary .md-nav--primary .md-nav__item:has(> .md-nav[data-md-level="2"]) > .md-nav__link .md-nav__icon {
+  display: none;
+}
+
+/* The Siemens lifted navigation hides the active section link on desktop.
+   Keep the feature-name link visible so it remains the Overview link. */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary .md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav__link.md-nav__container {
+    display: flex;
+  }
+
+  .md-sidebar--primary .md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav__link.md-nav__container > a {
+    font-size: 1.4em;
+    font-weight: 500;
+  }
+
+  .md-sidebar--primary .md-nav--primary .md-nav__item--active.md-nav__item--section > .md-nav[data-md-level="1"] > .md-nav__title {
+    display: none;
+  }
+}
+
+/* Template sources have no useful third-level navigation, but retain the
+   normal layout column for alignment with other category pages. */
+[data-dashboard-template-page="true"] .md-sidebar--primary {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden !important;
+}
+
+/* Keep the generated readiness explanation close to its component table. */
+.md-typeset__scrollwrap:has(+ .readiness-formula-note) {
+  margin-bottom: 0;
+}
+
+.readiness-formula-note {
+  margin-top: 0;
+}

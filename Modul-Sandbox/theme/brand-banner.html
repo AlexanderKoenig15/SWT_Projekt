@@ -1,0 +1,32 @@
+{% extends "main.html" %}
+
+{%- set hero_title     = page.meta.hero_title     or "Modularization Dashboard" %}
+{%- set hero_text      = page.meta.hero_text      or "" %}
+{%- set hero_cta_label  = page.meta.hero_cta_label  or "Browse Features" %}
+{%- set hero_cta_href   = page.meta.hero_cta_href   or "Features" %}
+{%- set hero_cta2_label = page.meta.hero_cta2_label %}
+{%- set hero_cta2_href  = page.meta.hero_cta2_href %}
+{%- set hero_image     = page.meta.hero_image | url if page.meta.hero_image else "" %}
+{%- set hero_image_alt = page.meta.hero_image_alt or hero_title if hero_image else "" %}
+
+{% block hero %}
+  <style>
+    .brand-banner{min-height:500px;padding:0 2rem;margin-top:-8px;color:#fff;font-size:18px;background:url("{{ 'assets/brand/background.png' | url }}");background-size:cover;position:relative;z-index:1}.brand-banner>div:first-child{backdrop-filter:blur(1.5px)}.brand-banner-content{max-width:1200px;margin:auto}@media only screen and (max-width:60em){.brand-banner-content{padding:2rem 0}}@media only screen and (min-width:60em){.brand-banner-content{padding-top:4rem;display:flex;justify-content:space-between;align-items:center;gap:2rem}}.brand-banner h1{font-size:36px;margin:0;padding-top:20px;max-width:440px}.brand-banner p{padding:10px 0 20px 0;max-width:440px}.brand-banner:not(.brand-banner--with-image) h1,.brand-banner:not(.brand-banner--with-image) p{max-width:640px}.button-primary{border-radius:3px;transition:all .3s;font-weight:700;margin:0 15px 15px 0;display:inline-block;color:#2d373c;background:#fff;padding:10px 25px;text-decoration:none}.button-primary:hover{background:#099;color:#fff}#brand-banner-poster{max-width:100%;max-height:280px;border-radius:0;margin-top:25px;box-shadow:0 0 8px #000}
+  </style>
+
+  <section class="brand-banner{% if hero_image %} brand-banner--with-image{% endif %}">
+    <div class="brand-banner-content">
+      <div>
+        <h1>{{ hero_title }}</h1>
+        {% if hero_text %}<p>{{ hero_text }}</p>{% endif %}
+        <a class="button-primary" href="{{ hero_cta_href }}">{{ hero_cta_label }}</a>
+        {% if hero_cta2_label and hero_cta2_href %}<a class="button-primary" href="{{ hero_cta2_href }}">{{ hero_cta2_label }}</a>{% endif %}
+      </div>
+      {% if hero_image %}
+      <div>
+        <img id="brand-banner-poster" src="{{ hero_image }}" alt="{{ hero_image_alt }}">
+      </div>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}

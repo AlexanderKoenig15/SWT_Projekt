@@ -1,0 +1,44 @@
+<header class="md-header{% if config.extra.alternate %} md-header--with-alternate{% endif %}" data-md-component="header">
+  <nav class="main-nav md-grid">
+    <div class="main-nav__inner-holder" id="siemens-header-container">
+      <a href="{{ config.site_url | default(nav.homepage.url, true) }}" class="logo">
+        {% include "partials/logo.html" %}
+      </a>
+      <div class="main-nav__links">
+        {% if "navigation.tertiary" in features %}
+          {% include "partials/siemens/tertiary-nav.html" %}
+        {% endif %}
+        {# Preserve the Siemens last-link sentinel inside the scrolling link strip. #}
+        <a style="display: none;"></a>
+      </div>
+    </div>
+
+    <div class="md-header__topic">
+      <div class="md-site-utilities">
+        {% if "code-siemens-code-docs-theme/search" in config.plugins or "material/search" in config.plugins %}
+          <label class="md-header__button md-icon" for="__search" title="Search" aria-label="Search">
+            {% include ".icons/material/magnify.svg" %}
+          </label>
+          {% include "partials/search.html" %}
+        {% endif %}
+
+        {% if config.theme.palette and not config.theme.palette is mapping %}
+          {% include "partials/palette.html" %}
+          {% include "partials/javascripts/palette.html" %}
+        {% endif %}
+
+        {% if config.extra.alternate %}
+          {% include "partials/alternate.html" %}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if "navigation.tertiary" in features %}
+      <label for="main-nav-toggle">
+        {% include ".icons/siemens/menu.svg" %}
+      </label>
+    {% endif %}
+  </nav>
+
+  {% include "partials/siemens/top-nav.html" %}
+</header>

@@ -1,0 +1,41 @@
+name: Bug or Process Request
+description: Report an unexpected behavior, suggest an idea or new functionality.
+title: "[Bug/Idea]: <Name of Bug or new functionality>"
+type: Bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug or new idea for the whole dashboard functionality. Please fill out the details below.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of the observed problem, other idea or new functionality.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      placeholder: What did you expect to happen?
+    validations:
+      required: false
+
+  - type: input
+    id: location
+    attributes:
+      label: Affected Page or File
+      description: Which page, category, or file is affected (for example `docs/Features/<item>/overview.yaml`)?
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Anything else that would help us understand the problem.
+    validations:
+      required: false

@@ -1,0 +1,98 @@
+name: Dashboard Repository Provisioning
+description: Request provisioning of a dedicated Dashboard Feature or category repository and its GitHub Project.
+title: "[Enhancement]: Provision Dashboard repository and Project"
+type: Enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Complete the request details and the submitted DevOps action checklist below.
+
+  - type: input
+    id: content_name
+    attributes:
+      label: Feature or category name
+      description: Human-readable Dashboard name.
+      placeholder: AI or Logging of Security Events
+    validations:
+      required: true
+
+  - type: dropdown
+    id: content_kind
+    attributes:
+      label: Content kind
+      options:
+        - Top-level category
+        - Feature
+    validations:
+      required: true
+
+  - type: input
+    id: repository_name
+    attributes:
+      label: Proposed repository
+      description: Use the maintained naming convention, for example AS-IO/Modul-AI or AS-IO/Modul-Feature-SecLog.
+      placeholder: AS-IO/Modul-AI
+    validations:
+      required: true
+
+  - type: input
+    id: project_name
+    attributes:
+      label: Proposed GitHub Project
+      description: Use the maintained naming convention, for example [CATEGORY] AI or [FEATURE] Logging of Security Events.
+      placeholder: "[CATEGORY] AI"
+    validations:
+      required: true
+
+  - type: input
+    id: owner_team
+    attributes:
+      label: Responsible owner or team
+      description: Provide the accountable owner/team and any category owner required by the Permission Matrix.
+      placeholder: Category Owner; responsible team
+    validations:
+      required: true
+
+  - type: textarea
+    id: maintainers
+    attributes:
+      label: Initial maintainers and contributors
+      description: List exact GitHub users/teams, or write "none beyond the current Permission Matrix".
+      placeholder: none beyond the current Permission Matrix
+    validations:
+      required: true
+
+  - type: textarea
+    id: access_exceptions
+    attributes:
+      label: Access exceptions
+      description: List exact exceptions, or write "none". Do not leave permission changes implicit.
+      placeholder: none
+    validations:
+      required: true
+
+  - type: textarea
+    id: requested_operation
+    attributes:
+      label: Definitive repository and Project operations
+      description: State the exact operations already resolved by the Dashboard workflow. Do not list alternatives or ask DevOps to decide structure or cutover.
+      placeholder: Create and initialize the exact repository and create the exact GitHub Project with the requested access.
+    validations:
+      required: true
+
+  - type: textarea
+    id: devops_actions
+    attributes:
+      label: DevOps action checklist and return facts
+      description: Keep the numbered actions and return facts complete in the submitted issue body.
+      value: |
+        ## Requested DevOps actions
+
+        1. Complete the definitive repository and Project operation stated above.
+        2. Apply the current repository Permission Matrix, including the confirmed owner/team, maintainers/contributors, and any listed access exceptions.
+        3. Grant `modul-dashboard-assembler` read-only Contents access to the repository.
+        4. Return the exact repository and Project names/links/numbers, default branch and commit confirmation, effective repository and Project permissions, App-access confirmation, owner/team, and exceptions.
+    validations:
+      required: true
+

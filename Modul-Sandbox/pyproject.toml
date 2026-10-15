@@ -1,0 +1,35 @@
+[project]
+name = "modularization-dashboard-docs"
+version = "0.1.0"
+description = "Documentation site for the Modularization Dashboard"
+authors = [{ name = "code.siemens.com team", email = "ops.code.ch@siemens.com" }]
+requires-python = ">=3.14,<4"
+license = "LicenseRef-Siemens-Inner-Source-License-1.4"
+dependencies = [
+    "mkdocs<2",
+    "mkdocs-code-siemens-code-docs-theme>=8,<9",
+    "plantuml-markdown>=3.11.1,<4",
+]
+
+[dependency-groups]
+dev = [
+    "coverage>=7.15.4",
+    "ruff",
+]
+
+[tool.uv]
+package = false
+
+[[tool.uv.index]]
+name = "mkdocs"
+url = "https://code.siemens.com/api/v4/projects/64538/packages/pypi/simple/"
+explicit = true
+
+[tool.uv.sources]
+mkdocs-code-siemens-code-docs-theme = { index = "mkdocs" }
+
+[tool.ruff]
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B", "SIM", "TRY004", "ISC", "PIE", "RUF", "FLY"]

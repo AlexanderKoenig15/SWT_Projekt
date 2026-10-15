@@ -1,0 +1,124 @@
+/* Keep authored Mermaid class colors readable in both theme schemes. */
+.mermaid {
+  --diagram-dashboard-bg: color-mix(in srgb, var(--md-primary-fg-color) 16%, var(--md-default-bg-color));
+  --diagram-dashboard-border: var(--md-primary-fg-color);
+  --diagram-content-bg: color-mix(in srgb, var(--md-accent-fg-color) 14%, var(--md-default-bg-color));
+  --diagram-content-border: var(--md-accent-fg-color);
+  --diagram-basic-bg: color-mix(in srgb, var(--md-primary-fg-color) 16%, var(--md-default-bg-color));
+  --diagram-extension-bg: color-mix(in srgb, var(--md-accent-fg-color) 16%, var(--md-default-bg-color));
+  --diagram-existing-bg: color-mix(in srgb, var(--md-primary-fg-color) 10%, var(--md-default-bg-color));
+  --diagram-neutral-border: var(--md-default-fg-color--light);
+  --diagram-text: var(--md-default-fg-color);
+}
+
+.mermaid .node.dashboard > rect,
+.mermaid .node.dashboard > path,
+.mermaid .node.dashboard > polygon,
+.mermaid .node.dashboard > ellipse,
+.mermaid .node.dashboard > circle,
+.mermaid .node.process > rect,
+.mermaid .node.process > path,
+.mermaid .node.process > polygon,
+.mermaid .node.process > ellipse,
+.mermaid .node.process > circle,
+.mermaid .node.spec > rect,
+.mermaid .node.spec > path,
+.mermaid .node.spec > polygon,
+.mermaid .node.spec > ellipse,
+.mermaid .node.spec > circle {
+  fill: var(--diagram-dashboard-bg) !important;
+  stroke: var(--diagram-dashboard-border) !important;
+}
+
+.mermaid .node.basicfunction > rect,
+.mermaid .node.basicfunction > path,
+.mermaid .node.basicfunction > polygon,
+.mermaid .node.basicfunction > ellipse,
+.mermaid .node.basicfunction > circle {
+  fill: var(--diagram-basic-bg) !important;
+  stroke: var(--diagram-dashboard-border) !important;
+}
+
+.mermaid .node.extension > rect,
+.mermaid .node.extension > path,
+.mermaid .node.extension > polygon,
+.mermaid .node.extension > ellipse,
+.mermaid .node.extension > circle {
+  fill: var(--diagram-extension-bg) !important;
+  stroke: var(--diagram-content-border) !important;
+}
+
+.mermaid .node.normal > rect,
+.mermaid .node.normal > path,
+.mermaid .node.normal > polygon,
+.mermaid .node.normal > ellipse,
+.mermaid .node.normal > circle {
+  fill: var(--md-default-bg-color) !important;
+  stroke: var(--diagram-neutral-border) !important;
+}
+
+.mermaid .node.existing > rect,
+.mermaid .node.existing > path,
+.mermaid .node.existing > polygon,
+.mermaid .node.existing > ellipse,
+.mermaid .node.existing > circle {
+  fill: var(--diagram-existing-bg) !important;
+  stroke: var(--diagram-content-border) !important;
+}
+
+.mermaid .node.content > rect,
+.mermaid .node.content > path,
+.mermaid .node.content > polygon,
+.mermaid .node.content > ellipse,
+.mermaid .node.content > circle {
+  fill: var(--diagram-content-bg) !important;
+  stroke: var(--diagram-content-border) !important;
+}
+
+.mermaid .node.dashboard text,
+.mermaid .node.dashboard .label,
+.mermaid .node.dashboard .nodeLabel,
+.mermaid .node.dashboard foreignObject,
+.mermaid .node.dashboard foreignObject *,
+.mermaid .node.process text,
+.mermaid .node.process .label,
+.mermaid .node.process .nodeLabel,
+.mermaid .node.process foreignObject,
+.mermaid .node.process foreignObject *,
+.mermaid .node.spec text,
+.mermaid .node.spec .label,
+.mermaid .node.spec .nodeLabel,
+.mermaid .node.spec foreignObject,
+.mermaid .node.spec foreignObject *,
+.mermaid .node.content .label,
+.mermaid .node.content text,
+.mermaid .node.content .nodeLabel,
+.mermaid .node.content foreignObject,
+.mermaid .node.content foreignObject * {
+  color: var(--diagram-text) !important;
+  fill: var(--diagram-text) !important;
+}
+
+.mermaid .node.basicfunction text,
+.mermaid .node.basicfunction .label,
+.mermaid .node.basicfunction .nodeLabel,
+.mermaid .node.basicfunction foreignObject,
+.mermaid .node.basicfunction foreignObject *,
+.mermaid .node.extension text,
+.mermaid .node.extension .label,
+.mermaid .node.extension .nodeLabel,
+.mermaid .node.extension foreignObject,
+.mermaid .node.extension foreignObject *,
+.mermaid .node.normal text,
+.mermaid .node.normal .label,
+.mermaid .node.normal .nodeLabel,
+.mermaid .node.normal foreignObject,
+.mermaid .node.normal foreignObject *,
+.mermaid .node.existing text,
+.mermaid .node.existing .label,
+.mermaid .node.existing .nodeLabel,
+.mermaid .node.existing foreignObject,
+.mermaid .node.existing foreignObject * {
+  color: var(--diagram-text) !important;
+  fill: var(--diagram-text) !important;
+}

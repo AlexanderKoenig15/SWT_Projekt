@@ -1,0 +1,78 @@
+{% set page_meta = page.meta if page is defined and page.meta else {} %}
+{% set feedback_links = page_meta.feedback_links if page_meta.feedback_links else (system_feedback_links if system_feedback_links is defined else []) %}
+{% set hide_license_text = false %}
+{% if page_meta.hide %}
+  {% set hide_license_text = true if "license_text" in page_meta.hide %}
+{% endif %}
+
+<section class="md-page-responsibility">
+  {% if page_meta.responsibility_table %}
+    <h2>Responsibility</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Responsible</th>
+          <th>Owner</th>
+          <th>GitHub project</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ page_meta.responsibility_table.responsible or "MISSING" }}</td>
+          <td>
+            {{ page_meta.responsibility_table.owners | join("; ") if page_meta.responsibility_table.owners else "MISSING" }}
+          </td>
+          <td>
+            {% if page_meta.responsibility_table.content_project_url %}
+              <a href="{{ page_meta.responsibility_table.content_project_url }}" target="_blank">View project</a>
+            {% else %}
+              MISSING
+            {% endif %}
+          </td>
+          <td>
+            {% if page_meta.responsibility_table.source_url %}
+              <a href="{{ page_meta.responsibility_table.source_url }}" target="_blank">{{ page_meta.responsibility_table.source_display_path }}</a>
+            {% else %}
+              MISSING
+            {% endif %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  {% endif %}
+  <h2>Feedback</h2>
+  {% if feedback_links | selectattr("disabled") | first is defined %}
+    <p><em>To activate the feedback, set up a GitHub project for this sandbox. This text will then disappear.</em></p>
+  {% endif %}
+  <p class="md-community-button" style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+    {% for link in feedback_links %}
+      {% if link.disabled %}
+        <span class="button md-button--disabled" aria-disabled="true" title="Missing: {{ link.missing | join(', ') }}">
+          {{ link.label }}
+        </span>
+      {% else %}
+        <a href="{{ link.url }}" class="button" target="_blank">
+          {% include ".icons/siemens/link-extern.svg" %}
+          {{ link.label }}
+        </a>
+      {% endif %}
+    {% endfor %}
+  </p>
+</section>
+
+{% if not hide_license_text and not page_meta.hide_license_text == true and not config.extra.hide_license_text == true %}
+<hr>
+<p>
+  <em>
+    {% if config.extra.page_license_text %}
+      {{ config.extra.page_license_text }}
+    {% else %}
+      Except where otherwise noted, content on this site is licensed under the
+      <a href="https://innersource.siemens.com/licenses/">
+        Siemens Inner Source License
+      </a>.
+    {% endif %}
+  </em>
+</p>
+{% endif %}

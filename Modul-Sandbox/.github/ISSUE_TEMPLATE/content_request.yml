@@ -1,0 +1,33 @@
+name: Content Request
+description: Suggest a content improvement or new functionality.
+title: "[Enhancement]: <Name of content improvement>"
+type: Enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement for the content. Please fill out the details below.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Description of the request, idea or new functionality.
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Affected Page or File
+      description: Which page, category, or file is affected (for example `docs/Features/<item>/overview.yaml`)?
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Anything else that would help us evaluate this request.
+    validations:
+      required: false

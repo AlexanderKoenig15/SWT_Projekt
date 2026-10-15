@@ -1,0 +1,3 @@
+version: 1
+excluded_path_prefixes:
+  - TestCases/

@@ -1,0 +1,6 @@
+/* Single source of truth for the maximum content width of every page.
+   The upstream Siemens theme caps `.md-grid` at 80rem; widen it here so
+   dashboard tables and card grids have more room on large screens. */
+.md-grid {
+  max-width: 90rem;
+}

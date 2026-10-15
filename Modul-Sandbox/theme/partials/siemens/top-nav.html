@@ -1,0 +1,28 @@
+<div class="md-tabbar-search-container">
+  <div class="md-grid">
+    {% if page.meta and page.meta.hide %}
+      {% if "navigation" in page.meta.hide and "navigation.tertiary" in features %}
+        {% set hide_nav = true %}
+      {% endif %}
+    {% endif %}
+    {% if not hide_nav == true %}
+      <label class="md-tabbar-search-container__title" for="__drawer">
+        {% block site_nav %}
+          {% for nav_item in nav %}
+            {% if nav_item.active %}
+              {{ nav_item.title }}
+            {% endif %}
+          {% endfor %}
+        {% endblock %}
+      </label>
+
+      <label class="md-icon md-header__button" for="__drawer">
+        {% include ".icons/siemens/arrowhead-down.svg" %}
+      </label>
+    {% endif %}
+
+    {% if "navigation.tabs" in features %}
+      {% include "partials/tabs.html" %}
+    {% endif %}
+  </div>
+</div>

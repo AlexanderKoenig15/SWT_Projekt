@@ -1,0 +1,96 @@
+site_name: AS IO Modularization Dashboard
+
+docs_dir: !ENV [MODUL_DASHBOARD_DOCS_DIR, docs]
+site_dir: !ENV [MODUL_DASHBOARD_SITE_DIR, site]
+
+edit_uri: 'blob/main/docs/'
+
+hooks:
+  - scripts/mkdocs_hooks.py
+
+# Markdown files in section/item subdirectories are linked from generated
+# detail pages but intentionally excluded from nav (they are listed in the
+# Related Documents table instead).
+not_in_nav: |
+  Home/index.md
+  */000_TEMPLATES/*.md
+  */*/*/*.md
+  */*/*/**/*.md
+validation:
+  links:
+    anchors: warn
+site_url: !ENV [PAGES_URL, 'https://pages.github.siemens.cloud/AS-IO/Modul-Dashboard']
+repo_url: !ENV [PROJECT_URL, 'https://github.siemens.cloud/AS-IO/Modul-Dashboard']
+
+theme:
+  name: 'code-siemens-code-docs-theme'
+  custom_dir: 'theme'
+  favicon: 'assets/brand/favicon.png'
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: dark
+      toggle:
+        icon: siemens/element/element-economy
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: light
+      toggle:
+        icon: siemens/element/element-sun
+        name: Switch to system theme
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: siemens/element/element-theme-auto
+        name: Switch to dark mode
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.tertiary
+    - content.action.edit
+
+nav: []
+
+extra:
+  links:
+    - name: 'code'
+      value: !ENV [PROJECT_URL, 'https://github.siemens.cloud/AS-IO/Modul-Dashboard']
+    - name: 'issues'
+      value: !ENV [PROJECT_ISSUES_URL, 'https://github.siemens.cloud/AS-IO/Modul-Dashboard/issues']
+    - name: 'milestones'
+      value: !ENV [PROJECT_MILESTONES_URL, 'https://github.siemens.cloud/AS-IO/Modul-Dashboard/milestones']
+
+markdown_extensions:
+  - attr_list
+  - def_list
+  - md_in_html
+  - abbr
+  - admonition
+  - plantuml_markdown:
+      server: https://code.siemens.com/api/plantuml
+  - pymdownx.highlight:
+      linenums: true
+      linenums_style: pymdownx-inline
+      guess_lang: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.details
+  - footnotes
+  - pymdownx.snippets
+  - pymdownx.tasklist
+  - pymdownx.tilde
+
+extra_css:
+  - assets/stylesheets/content-width.css
+  - assets/stylesheets/navigation-depth-cap.css
+  - assets/stylesheets/header-utilities.css
+  - assets/stylesheets/mermaid-contrast.css
+  - assets/stylesheets/file-viewer.css
+  - assets/stylesheets/document-tree.css
+
+extra_javascript:
+  - assets/javascripts/mermaid-contrast.mjs
