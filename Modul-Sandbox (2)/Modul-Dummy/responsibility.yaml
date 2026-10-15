@@ -1,0 +1,4 @@
+# Root fallback for page responsibility and request routing.
+responsible: Dashboard Team
+owner:
+  - Dashboard Team

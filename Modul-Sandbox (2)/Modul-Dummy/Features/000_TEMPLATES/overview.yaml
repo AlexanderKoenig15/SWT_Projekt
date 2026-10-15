@@ -1,0 +1,487 @@
+﻿# Features dashboard template semantics:
+# - required: feature instances must provide a non-empty value; missing/empty is shown as red MISSING.
+# - optional: feature instances may leave it empty; missing/empty is shown as '-'.
+# - template: metadata used only by this template (display labels and descriptions); not expected in instances.
+# - append: a non-empty template value is kept, then feature values are appended without duplicates.
+#   Append resolves to a list, treating scalar template and feature values as one-item lists.
+# - Any non-template field may declare a scalar default directly or with `value` (or `default`).
+#   Instance `overview.yaml` values override defaults; defaults are used when the instance value is empty/missing.
+#
+# Each entry in "processes" defines a named process step.
+#   display_name   Human-readable label (template state).
+#   description    Template-owned Markdown note shown alongside the process.
+#   sources        Structural local paths relative to the feature directory, paths below a registered
+#                  documentation mount, external URLs, or Markdown links. They accept scalar or list values.
+#                  Write a Markdown link as a quoted string, such as
+#                  '[Test plan](https://example.invalid/test-plan)'.
+#                  The renderer checks existence: existing local or mounted dir -> scan files;
+#                  non-dir non-URL -> missing. Mounted Markdown files use their normal published pages.
+#                  For the process overview table, direct Markdown files (.md/.markdown) in local source roots are the primary
+#                  metadata source: frontmatter owner -> Owner, document_version -> Version, and
+#                  modified_at -> Date (shown as YYYY-MM-DD). Each file and field falls back independently
+#                  to the corresponding YAML process value; fallback values are shown in orange.
+#                  Only direct root Markdown files participate in this overview metadata. Other direct files
+#                  and nested files remain in the process document tree. If no direct Markdown file exists,
+#                  the process row uses normal YAML metadata without fallback styling. Released files are shown first.
+#   Any other field is trackable metadata shown in the process table and aggregated in the summary.
+#   Required metadata readiness counts a field as filled when explicit feature YAML or at least one
+#   direct Markdown file supplies a value. The template still defines required fields; template defaults
+#   do not satisfy readiness. Progress, responsible, and feature last-update calculations remain YAML-based.
+#
+# Generated Features policy defaults; Feature overview.yaml files may override them.
+# Fields: responsible, owner, dashboard_request, content_request.
+# Process owner/responsible fields below are separate process metadata.
+#
+# "groups" organises processes into collapsible display sections.
+# Every process must be referenced by exactly one group.
+
+
+feature_name: required
+description: optional
+responsible: SFO
+# The Features category owner is currently unknown; individual Features may override it.
+owner: null
+processes:
+
+  feature_elaboration:
+    display_name:
+      state: template
+      value: Feature Elaboration
+    sources:
+      state: append
+      value:
+        - 01_System_Spec/Feature_Elaboration
+    description:
+      state: template
+      value: "Elaborate the feature's requirements from norms, standards and customer needs into product-specific requirements."
+    responsible:
+      - SPM
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  solution_concept:
+    display_name:
+      state: template
+      value: Solution Concepts
+    sources:
+      state: append
+      value:
+        - 01_System_Spec/Solution_Concepts
+    description:
+      state: template
+      value: "Define the high-level solution architecture, topologies and interfaces for implementing the feature. There can be multiple solution concepts, which will be evaluated in the system function specification."
+    responsible: ARC
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  sph:
+    display_name:
+      state: template
+      value: "System Functions Specification (SPH)"
+    sources: required
+    description:
+      state: template
+      value: "Specify the system-level functions and behavior for the feature. Give advice on which aspects must be considered, which solutions were chosen, and offer realization strategies towards the requirements."
+    responsible: ARC
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  tia_portal_integration:
+    display_name:
+      state: template
+      value: "TIA Portal Integration"
+    sources:
+      state: optional
+      value:
+        - 01_System_Spec/TIA_Integration
+    description:
+      state: template
+      value: "Describe the TIA Portal engineering parameters and tooling needed to configure the feature, if planned."
+    responsible: ARC
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  tra:
+    display_name:
+      state: template
+      value: "Threat and Risk Analysis (TRA)"
+    sources: required
+    description:
+      state: template
+      value: "Assess security threats and risks associated with the feature and its implementation."
+    responsible: SFO
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  feature_specification:
+    display_name:
+      state: template
+      value: Feature Specification and Architecture
+    sources:
+      state: append
+      value:
+        - 02_Feature_Spec/Feature_Specification
+    description:
+      state: template
+      value: "Detail the feature's functional specification and architecture, including product-specific requirements and interfaces."
+    responsible: SFO
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  modularization_fmc:
+    display_name:
+      state: template
+      value: "FMC (Firmware Modularization Council)"
+    sources:
+      state: append
+      value:
+        - 02_Feature_Spec/Modularization_FMC
+    description:
+      state: template
+      value: "Evaluate how the feature is modularized and assigned across firmware components at the Firmware Modularization Council."
+    responsible: SFO
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  clearing_patent:
+    display_name:
+      state: template
+      value: Patent Clearing
+    sources:
+      state: append
+      value:
+        - 02_Feature_Spec/Clearing_Patent
+    description:
+      state: template
+      value: "Confirm patent clearing for the feature's implementation."
+    responsible: optional
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  user_docs:
+    display_name:
+      state: template
+      value: User Documentation
+    sources:
+      state: append
+      value:
+        - 02_Feature_Spec/Events
+    description:
+      state: template
+      value: "Provide end-user documentation describing the feature's behavior and configuration."
+    responsible: optional
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  feature_implementation:
+    display_name:
+      state: template
+      value: Feature Implementation and Unit Tests
+    sources: required
+    description:
+      state: template
+      value: "Implement the feature in firmware and cover it with accompanying unit tests. Here a link to the implementation repository can be provided. The type or modularization can be added in relation to [Terms of Modularization](https://example.invalid/wiki/terms-of-modularization)"
+    responsible: optional
+    owner: required
+    # e.g. Core Asset, Product Group Framework, Component, Source Library
+    modularization_type: optional
+    version: optional
+    date: optional
+    progress: 0
+
+  integration_imck:
+    display_name:
+      state: template
+      value: Integration IMCK
+    sources: required
+    description:
+      state: template
+      value: "Reuse components (Core Asset integration + adaptation layer)."
+    responsible: optional
+    owner: required
+    # e.g. Core Asset, Product Group Framework, Component, Source Library
+    modularization_type: optional
+    products: required
+    framework: required
+    version: optional
+    date: optional
+    progress: 0
+
+  integration_sp:
+    display_name:
+      state: template
+      value: Integration SP
+    sources: required
+    description:
+      state: template
+      value: "Component (Core Asset integration + adaptation layer) and backplane bus adaption."
+    responsible: optional
+    owner: required
+    # e.g. Core Asset, Product Group Framework, Component, Source Library
+    modularization_type: optional
+    products: required
+    framework: required
+    version: optional
+    date: optional
+    progress: 0
+
+  integration_mp:
+    display_name:
+      state: template
+      value: Integration MP
+    sources: required
+    description:
+      state: template
+      value: "API and backplane bus seclog transport"
+    responsible: optional
+    owner: required
+    # e.g. Core Asset, Product Group Framework, Component, Source Library
+    modularization_type: optional
+    products: required
+    framework: required
+    version: optional
+    date: optional
+    progress: 0
+
+  integration_tl:
+    display_name:
+      state: template
+      value: Integration TL
+    sources: optional
+    description:
+      state: template
+      value: null
+    responsible: optional
+    owner: required
+    # e.g. Core Asset, Product Group Framework, Component, Source Library
+    modularization_type: optional
+    products: required
+    framework: required
+    version: optional
+    date: optional
+    progress: 0
+
+  clearing_oss:
+    display_name:
+      state: template
+      value: OSS Clearing
+    sources: required
+    description:
+      state: template
+      value: "Confirm open-source software clearing for components used to implement the feature."
+    responsible: optional
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  clearing_export:
+    display_name:
+      state: template
+      value: Export Control Clearing
+    sources: required
+    description:
+      state: template
+      value: "Confirm export control clearing for the feature."
+    responsible: optional
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  dependencies:
+    display_name:
+      state: template
+      value: Dependencies
+    sources:
+      state: append
+      value:
+        - 03_Dependencies
+    description:
+      state: template
+      value: "Document partnering and dependency work required from other teams or modules to realize the feature."
+    responsible: SFO
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  test_concept:
+    display_name:
+      state: template
+      value: Test Concept
+    sources:
+      state: append
+      value:
+        - 04_Testing/Test_Concept
+    description:
+      state: template
+      value: "Define the overall test strategy and scope for validating the feature."
+    responsible: TARC
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  test_cases_system:
+    display_name:
+      state: template
+      value: "System Test Case Sets"
+    sources: required
+    description:
+      state: template
+      value: "Create and maintain the system-level test cases verifying the feature end-to-end."
+    responsible: TCO
+    owner: required
+    version: required
+    date: required
+    progress: 0
+    tms_database: required
+
+  test_cases_integration:
+    display_name:
+      state: template
+      value: "Integration Test Case Sets"
+    sources: required
+    description:
+      state: template
+      value: "Create and maintain the integration-level test cases verifying the feature across modules."
+    responsible: TCO
+    owner: required
+    version: required
+    date: required
+    progress: 0
+    tms_database: required
+
+  test_automation_solutions:
+    display_name:
+      state: template
+      value: "Test Automation Solution Proposal (TAF, MOTIF)"
+    sources:
+      state: append
+      value:
+        - 04_Testing/TestAutomation_Solution
+    description:
+      state: template
+      value: "Propose test automation solutions (e.g. TAF, MOTIF) for validating the feature."
+    responsible: TARC
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  modularization_imc:
+    display_name:
+      state: template
+      value: "IMC (Integration Test Modularization Council)"
+    sources:
+      state: append
+      value:
+        - 04_Testing/Modularization_IMC
+    description:
+      state: template
+      value: "Evaluate how integration testing for the feature is modularized at the Integration Test Modularization Council."
+    responsible: optional
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  test_automation_library:
+    display_name:
+      state: template
+      value: Test Automation Library
+    sources:
+      state: append
+      value:
+        - 04_Testing/TestAutomation_Library
+    description:
+      state: template
+      value: "Develop and track the test automation library components supporting automated testing of the feature."
+    responsible: TARC
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+  test_automation_scripts:
+    display_name:
+      state: template
+      value: Test Automation Scripts
+    sources:
+      state: append
+      value:
+        - 04_Testing/TestAutomation_Implementation
+    description:
+      state: template
+      value: "Implement the test automation scripts that automate tests for the feature."
+    responsible: optional
+    owner: required
+    version: required
+    date: required
+    progress: 0
+
+groups:
+  - name: System Specification
+    items:
+      - feature_elaboration
+      - solution_concept
+      - sph
+      - tia_portal_integration
+      - tra
+
+  - name: Feature Specification and Architecture
+    items:
+      - feature_specification
+      - modularization_fmc
+      - clearing_patent
+      - user_docs
+
+  - name: Feature Implementation
+    items:
+      - feature_implementation
+      - integration_imck
+      - integration_sp
+      - integration_mp
+      - integration_tl
+      - clearing_oss
+      - clearing_export
+
+  - name: Dependencies
+    items:
+      - dependencies
+
+  - name: Testing
+    items:
+      - test_concept
+      - test_cases_system
+      - test_cases_integration
+      - test_automation_solutions
+      - modularization_imc
+      - test_automation_library
+      - test_automation_scripts
+
+# Template-only weights used to calculate process readiness. They must sum to 100.
+process_readiness_weights:
+  source: 10
+  metadata: 10
+  progress: 80
+
